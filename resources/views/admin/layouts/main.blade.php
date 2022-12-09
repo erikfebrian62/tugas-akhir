@@ -45,7 +45,7 @@
             </div>
             <div class="app-content">
                 <div class="content-wrapper">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="row">
                             <div class="col">
                                 <div class="page-description">

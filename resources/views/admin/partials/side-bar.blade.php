@@ -11,19 +11,19 @@
 <div class="app-menu">
     <ul class="accordion-menu">
         <li class="sidebar-title">
-            Apps
+            Menu
         </li>
         <li class="active-page">
             <a href="/" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
         </li>
         <li>
-            <a href="/produk"><i class="material-icons-two-tone">bookmark</i>Produk<span class="badge rounded-pill badge-danger float-end">87</span></a>
+            <a href="/produk"><i class="material-icons-two-tone">bookmark</i>Produk</a>
         </li>
         <li>
             <a href="file-manager.html"><i class="material-icons-two-tone">cloud_queue</i>File Manager</a>
         </li>
         <li>
-            <a href="calendar.html"><i class="material-icons-two-tone">calendar_today</i>Calendar<span class="badge rounded-pill badge-success float-end">14</span></a>
+            <a href="/kalender"><i class="material-icons-two-tone">calendar_today</i>Calendar</a>
         </li>
         <li>
             <a href="todo.html"><i class="material-icons-two-tone">done</i>Todo</a>

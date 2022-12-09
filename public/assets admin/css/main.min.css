@@ -709,7 +709,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .app-header .notifications-dropdown {
-    width: 350px;
+    width: 100px;
     max-height: 400px
 }
 

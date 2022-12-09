@@ -22,5 +22,9 @@ Route::get('/', function () {
 });
 
 Route::get('/produk', function () {
-    return view('admin.Produk.index');
+    return view('admin.produk.index');
+});
+
+Route::get('/kalender', function () {
+    return view('admin.kalender.index');
 });
