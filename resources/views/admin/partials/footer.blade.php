@@ -1,5 +1,5 @@
 <footer>
-    <div class="footer clearfix mb-0 text-muted">
+    <div class="footer clearfix mb-0 ms-4 text-muted">
         <div class="float-start">
             @php
             $year = date('Y');
