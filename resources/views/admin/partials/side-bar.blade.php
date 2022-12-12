@@ -2,7 +2,7 @@
     <a href="#" class="logo-icon"><span class="logo-text">profit_counter</span></a>
     <div class="sidebar-user-switcher user-activity-online">
         <a href="#">
-            <img src="{{ asset('assets admin/images/avatars/avatar1.jpg') }}">
+            <img src="{{ asset('/images/admin.jpg') }}">
             <span class="activity-indicator"></span>
             <span class="user-info-text">Admin<br><span class="user-state-info">Sedang aktif</span></span>
         </a>

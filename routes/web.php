@@ -17,6 +17,10 @@ Route::get('/login', function () {
 });
 
 
+Route::get('/user', function () {
+    return view('users.dashboard.index');
+});
+
 Route::get('/', function () {
     return view('admin.dashboard.index');
 });
