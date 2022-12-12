@@ -20,11 +20,10 @@ Route::get('/login', function () {
 Route::get('/', function () {
     return view('admin.dashboard.index');
 });
-
-Route::get('/produk', function () {
-    return view('admin.produk.index');
+Route::get('/register', function () {
+    return view('auth.register.index');
 });
 
-Route::get('/kalender', function () {
-    return view('admin.kalender.index');
+Route::get('/info-users', function () {
+    return view('admin.info-users.index');
 });

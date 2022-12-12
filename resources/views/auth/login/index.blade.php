@@ -44,10 +44,10 @@
             </div>
             <p class="auth-description">Silahkan login menggunakan akun anda.</p>
 
-            <div class="auth-credentials m-b-xxl">
+            <div class="auth-credentials">
                 <form action="">
                     <div class="form-floating">
-                        <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" required placeholder="Masukan Email">
+                        <input type="email" class="form-control" id="signInEmail" aria-describedby="signInEmail" required placeholder="Masukan Email">
                         <label for="signInEmail" class="form-label">Email</label>
                     </div>
 
@@ -56,7 +56,7 @@
                         <label for="signInPassword" class="form-label">Password</label>
                     </div>
                     <div class="form-group mt-5 text-center">
-                        <button type="submit" class="btn btn-primary w-100">Log in</button>
+                        <button type="submit" class="btn btn-primary w-50">Log in</button>
                     </div>
                 </form>
             </div>
