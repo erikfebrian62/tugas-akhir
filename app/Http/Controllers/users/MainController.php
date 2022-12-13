@@ -5,7 +5,7 @@ namespace App\Http\Controllers\users;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DashboardController extends Controller
+class MainController extends Controller
 {
     public function index(){
         return view('users.dashboard.index');

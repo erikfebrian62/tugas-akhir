@@ -42,17 +42,18 @@
             <div class="logo">
                 <a href="#">profit_counter</a>
             </div>
-            <p class="auth-description">Silahkan login menggunakan akun anda.</p>
+            <p class="auth-description">Silahkan login menggunakan akun anda.<br>Belum mempunyai akun? <a href="{{ route('register.index') }}">Register</a></p>
 
             <div class="auth-credentials">
-                <form action="">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="signInEmail" aria-describedby="signInEmail" required placeholder="Masukan Email">
-                        <label for="signInEmail" class="form-label">Email</label>
+                <form action="{{ route('login.proces') }}" method="POST">
+                    @csrf
+                    <div class="form-floating mb-3">
+                        <input type="email" class="shadow-sm form-control" name="email" id="signInEmail" aria-describedby="signInEmail" required placeholder="Masukan Email" value="{{ old('email') }}">
+                        <label for="signInEmail" class="form-label">Email address </label>
                     </div>
 
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="signInPassword" aria-describedby="signInPassword" required placeholder="Masukan Password">
+                        <input type="password" class="shadow-sm form-control" id="signInPassword" aria-describedby="signInPassword" required placeholder="Masukan Password" name="password">
                         <label for="signInPassword" class="form-label">Password</label>
                     </div>
                     <div class="form-group mt-5 text-center">

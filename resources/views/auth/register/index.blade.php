@@ -17,6 +17,7 @@
 
     {{-- Boostrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
     {{-- icon title --}}
     <link rel="shortcut icon" href="{{ asset('/images/zyro-image.png') }}" type="image/x-icon">
@@ -45,23 +46,59 @@
             <div class="logo">
                 <a href="index.html">profit_counter</a>
             </div>
-            <p class="auth-description">Silahkan mengisi data untuk registrasi.<br>Sudah mempunyai akun? <a href="#">Login</a></p>
-            <form action="">
+            <p class="auth-description">Silahkan mengisi data untuk registrasi.<br>Sudah mempunyai akun? <a href="{{ route('login.index') }}">Login</a></p>
+            <form action="{{ route('register.proces') }}" method="POST">
+                @csrf
                 <div class="mb-3 form-floating">
-                    <input type="email" class="form-control" id="signUpUsername" aria-describedby="signUpUsername" placeholder="Enter username">
+                    <input type="text" class="shadow-sm form-control @error('name')
+                       is-invalid 
+                    @enderror" name="name" id="signUpUsername" aria-describedby="signUpUsername" placeholder="Enter username" required value="{{ old('name') }}">
                     <label for="signUpUsername" class="form-label">Username</label>
+                    @error('name')
+                        <div class="invalid-feedback">
+                             {{ $message }}
+                        </div>
+                    @enderror
                 </div>
     
                 <div class="mb-3 form-floating">
-                    <input type="email" class="form-control" id="signUpEmail" aria-describedby="signUpEmail" placeholder="example@neptune.com">
+                    <input type="email" name="email" class="shadow-sm form-control @error('email')
+                        is-invalid
+                    @enderror" id="signUpEmail" aria-describedby="signUpEmail" placeholder="example@neptune.com" required value="{{ old('email') }}">
                     <label for="signUpEmail" class="form-label">Email address</label>
+                    @error('email')
+                        <div class="invalid-feedback">
+                             {{ $message }}
+                        </div>
+                    @enderror
                 </div>
+
+                <div class="mb-3 form-floating">
+                    <input type="text" class="shadow-sm form-control @error('jenis_usaha')
+                        is-invalid
+                    @enderror" id="jenis_usaha" name="jenis_usaha" placeholder="usaha" required value="{{ old('jenis_usaha') }}">
+                    <label for="jenis_usaha">Jenis usaha</label>
+                    @error('jenis_usaha')
+                        <div class="invalid-feedback">
+                             {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
                 <div class=" form-floating">
-                    <input type="password" class="form-control" id="signUpPassword" aria-describedby="signUpPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                    <input type="password" class="shadow-sm form-control @error('password')
+                        is-invalid
+                    @enderror" name="password" id="signUpPassword" aria-describedby="signUpPassword" placeholder="passsword" required>
                     <label for="signUpPassword" class="form-label">Password</label>
+                    @error('password')
+                        <div class="invalid-feedback">
+                             {{ $message }}
+                        </div>
+                    @enderror
                 </div>
+
                 <div class="form-group mt-5 text-center">
-                <button type="submit" class="btn btn-primary w-50">Register</button>
+                <button type="submit" class="btn btn-primary w-50">Register <i class="ms-1 bi bi-send"></i></button>
             </form>
             </div>
         </div>

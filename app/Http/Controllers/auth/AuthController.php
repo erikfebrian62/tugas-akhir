@@ -2,22 +2,54 @@
 
 namespace App\Http\Controllers\auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function login_index(){
+    //register
+    public function register_index()
+    {
+        return view('auth.register.index');
+    }
+
+    public function register_proces(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email:dns|unique:users',
+            'jenis_usaha' => 'required',
+            'password' => 'required|min:5|max:255'
+        ]);
+        
+        $User = User::create([
+            'role' => 'user',
+            'name' => $request->name,
+            'email' => $request->email,
+            'jenis_usaha' => $request->jenis_usaha,
+            'password' => Hash::make($request->password),
+        ]);
+        $User->save();
+
+        return redirect (route('login.index'))->with('success', 'Registration success, Please login!');
+    }
+
+    //login
+    public function login_index()
+    {
         return view('auth.login.index');
     }
 
-    public function login_proces(Request $request){
+    public function login_proces(Request $request)
+    {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
            if(Auth::user()->role === 'user') {
-            return redirect(Route('users.dashboard'));
+            return redirect(route('user.dashboard'));
            } else {
-            return redirect(Route('admin.dashboard'));
+            return redirect(route('admin.dashboard'));
            }
         }
         return back()->with('Error', 'email atau password salah');
