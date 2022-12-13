@@ -321,7 +321,10 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Profile</span></a>
+                    <li>
+                        <a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bx bx-user"></i>
+                        profile
+                        </a>
                     </li>
                     <li>
                         <div class="dropdown-divider mb-0"></div>
@@ -333,3 +336,60 @@
         </nav>
     </div>
 </header>
+
+
+<!-- Modal profile -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Profile</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-4">  
+                    <div class="card p-3 py-4 mt-2 shadow-2xl">  
+                        <div class="text-center">
+                            <img src="{{ asset('images/user.png') }}" width="100" class="rounded-circle">
+                        </div>
+                        <div class="text-center mt-3">
+                            <span class="bg-secondary p-1 px-4 rounded text-white">Pengusaha</span>
+                            <h5 class="mt-2 mb-0">Alexender Schidmt</h5>
+                             <ul class="social-list">
+                                <li><i class="fa fa-facebook"></i></li>
+                                <li><i class="fa fa-dribbble"></i></li>
+                                <li><i class="fa fa-instagram"></i></li>
+                                <li><i class="fa fa-linkedin"></i></li>
+                                <li><i class="fa fa-google"></i></li>
+                            </ul> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card mt-2 shadow-lg">
+                        <div class="card-body">
+                            <form action="" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class=" mb-3">
+                                    <input type="file" class="form-control" name="img" id="img">
+                                    <input type="hidden" value="" name="oldimage">
+                                    <img src="/images/user.png" class="mt-3" width="150px">
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="ketua" value="" id="floatingInput" placeholder="Ketua">
+                                    <label for="floatingInput">Ketua</label>
+                                </div>
+                                <button type="submit" class="btn  btn-primary btn-sm float-end"><i class="fa fa-save"></i>Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

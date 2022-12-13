@@ -17,6 +17,9 @@
 	<!-- loader-->
 	<link href="{{ asset('assets users/css/pace.min.css') }}" rel="stylesheet"/>
 	<script src="{{ asset('assets users/js/pace.min.js') }}"></script>
+	{{-- Boostrap 5 --}}
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 	<!-- Bootstrap CSS -->
 	<link href="{{ asset('assets users/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets users/css/bootstrap-extended.css') }}" rel="stylesheet">
@@ -27,6 +30,7 @@
 	<link rel="stylesheet" href="{{ asset('assets users/css/dark-theme.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('assets users/css/semi-dark.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('assets users/css/header-colors.css') }}"/>
+	<link rel="stylesheet" href="profile.css">
 	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
 </head>
 

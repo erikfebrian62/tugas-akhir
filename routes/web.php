@@ -17,6 +17,10 @@ Route::get('/login', function () {
 });
 
 
+Route::get('/profile', function () {
+    return view('users.usaha.kelola-produk .index');
+});
+
 Route::get('/user', function () {
     return view('users.dashboard.index');
 });
@@ -31,3 +35,4 @@ Route::get('/register', function () {
 Route::get('/info-users', function () {
     return view('admin.info-users.index');
 });
+
