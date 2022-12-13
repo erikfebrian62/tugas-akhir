@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\users\CalculateController;
+use App\Http\Controllers\users\DashboardController as UsersDashboardController;
+use App\Http\Controllers\users\LaporanController;
+use App\Http\Controllers\users\ProdukController;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,27 +18,24 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//auth
 Route::get('/login', function () {
     return view('auth.login.index');
 });
 
 
-Route::get('/profile', function () {
-    return view('users.usaha.kelola-produk .index');
+// admin
+Route::prefix('admin')->name('admin.')->middleware('role:admin')->group( function() {
+    Route::get('/dashboard', ['admin\DashboardController@index'])->name('dashboard');
+    Route::get('/info-users', [InfouserController::class, 'index'])->name('info-user');
 });
 
-Route::get('/user', function () {
-    return view('users.dashboard.index');
-});
-
-Route::get('/', function () {
-    return view('admin.dashboard.index');
-});
-Route::get('/register', function () {
-    return view('auth.register.index');
-});
-
-Route::get('/info-users', function () {
-    return view('admin.info-users.index');
+//users
+Route::prefix('users')->name('user.')->middleware('role:user')->group( function() {
+    Route::get('/dashboard', ['users\DashboardController@index'])->name('dashboard');
+    Route::get('/kelola-produk', [ProdukController::class, 'index'])->name('kelola-produk');
+    Route::get('/calculate-profit', [CalculateController::class, 'index'])->name('calculate');
+    Route::get('/laporan-keuangan', [LaporanController::class, 'index'])->name('laporan');
 });
 

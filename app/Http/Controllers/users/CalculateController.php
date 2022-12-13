@@ -7,5 +7,7 @@ use App\Http\Controllers\Controller;
 
 class CalculateController extends Controller
 {
-    //
+    public function index(){
+        return view('');
+    }
 }
