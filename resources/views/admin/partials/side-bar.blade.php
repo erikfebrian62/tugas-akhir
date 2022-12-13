@@ -26,7 +26,7 @@
                     <a href="#">Profile <i class="ms-3 bi bi-person-square"></i></a>
                 </li>
                 <li>
-                    <a href="#">Log out<i class="ms-3 bi bi-box-arrow-right"></i></a>
+                    <a href="{{ route('logout') }}">Log out<i class="ms-3 bi bi-box-arrow-right"></i></a>
                 </li>
             </ul>
         </li>

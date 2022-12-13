@@ -71,5 +71,30 @@
     <script src="{{ asset('assets admin/plugins/pace/pace.min.js') }}"></script>
     <script src="{{ asset('assets admin/js/main.min.js') }}"></script>
     <script src="{{ asset('assets admin/js/custom.js') }}"></script>
+    {{-- Sweet-alert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    {{-- span --}}
+    <script>
+        @if (Session::has('notice'))
+        const Toast = Swal.mixin({
+           toast: true,
+           position: 'top-end',
+           showConfirmButton: false,
+           timer: 3000,
+           timerProgressBar: true,
+           didOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+           }
+           })
+           Toast.fire({
+           icon: 'success',
+           title: '{{ Session::get('notice') }}'
+           })
+        @endif
+      </script>
 </body>
 </html>

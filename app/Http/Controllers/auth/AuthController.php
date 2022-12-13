@@ -5,6 +5,7 @@ namespace App\Http\Controllers\auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -34,7 +35,11 @@ class AuthController extends Controller
         ]);
         $User->save();
 
-        return redirect (route('login.index'))->with('success', 'Registration success, Please login!');
+        event(new Registered($User));
+
+        auth()->login($User);
+
+        return redirect(route('verification.notice'))->with('success', 'Akun berhasil dibuat, silahkan verifikasi email anda');
     }
 
     //login
