@@ -7,8 +7,6 @@ use App\Http\Controllers\users\MainController;
 use App\Http\Controllers\users\ProdukController;
 use App\Http\Controllers\auth\PasswordController;
 use App\Http\Controllers\users\LaporanController;
-use App\Http\Controllers\admin\InfouserController;
-use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\users\CalculateController;
 use App\Http\Controllers\auth\VerificationController;
 
@@ -23,7 +21,7 @@ use App\Http\Controllers\auth\VerificationController;
 |
 */
 
-Route::controller(AuthController::class)->group(function () {
+Route::controller(AuthController::class)->middleware('guest')->group(function () {
     //register
     Route::get('/', 'register_index')->name('register.index');
     Route::post('/', 'register_proces')->name('register.proces');
@@ -55,19 +53,10 @@ Route::controller(PasswordController::class)->group(function () {
     Route::post('reset-password', 'reset_proces')->name('reset.proces');
 });
 
-
-Route::middleware(['auth', 'auth.session', 'verified'])->group(function () {
-    // admin
-    Route::prefix('admin')->name('admin.')->middleware('role:admin')->group( function() {
-        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('info-users', [InfouserController::class, 'index'])->name('info-user');
-    });
-
-    //users
-    Route::prefix('user')->name('user.')->middleware('role:user')->group( function() {
-        Route::get('dashboard', [MainController::class, 'index'])->name('dashboard');
-        Route::get('kelola-produk', [ProdukController::class, 'index'])->name('kelola-produk');
-        Route::get('calculate-profit', [CalculateController::class, 'index'])->name('calculate');
-        Route::get('laporan-keuangan', [LaporanController::class, 'index'])->name('laporan');
-    });
+Route::group(['middleware' => ['auth', 'auth.session', 'verified']], function(){
+    Route::get('dashboard', [MainController::class, 'index'])->name('dashboard');
+    Route::get('kelola-produk', [ProdukController::class, 'index'])->name('kelola-produk');
+    Route::get('calculate-profit', [CalculateController::class, 'index'])->name('calculate');
+    Route::get('laporan-keuangan', [LaporanController::class, 'index'])->name('laporan');
 });
+

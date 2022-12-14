@@ -15,7 +15,7 @@ class VerificationController extends Controller
 
     public function verify(EmailVerificationRequest $request){
         $request->fulfill();
-        return redirect(route('login.proces'))->with('notice', 'Verifikasi berhasil silahkan login:)');
+        return redirect(route('dashboard'))->with('notice', 'Verifikasi berhasil:)');
     }       
 
     public function send(Request $request){

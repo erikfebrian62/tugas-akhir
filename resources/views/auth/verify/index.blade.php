@@ -55,5 +55,37 @@
            })
         @endif
       </script>
+
+    {{-- span --}}
+    <script>
+        @if (Session::has('verify'))
+        const Toast = Swal.mixin({
+           toast: true,
+           position: 'top-end',
+           showConfirmButton: false,
+           timer: 3000,
+           timerProgressBar: true,
+           didOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+           }
+           })
+           Toast.fire({
+           icon: 'info',
+           title: '{{ Session::get('verify') }}'
+           })
+        @endif
+      </script>
+
+      {{-- span --}}
+      <script>
+        @if (Session::has('berhasil'))
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: '{{ Session::get('berhasil') }}',
+        })
+        @endif
+      </script>
 </body>
 </html>

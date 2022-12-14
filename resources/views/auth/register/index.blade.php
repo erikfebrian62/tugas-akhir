@@ -27,14 +27,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-    <link href="{{ asset('assets admin/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets admin/plugins/perfectscroll/perfect-scrollbar.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets admin/plugins/pace/pace.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets auth/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets auth/plugins/perfectscroll/perfect-scrollbar.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets auth/plugins/pace/pace.css') }}" rel="stylesheet">
 
     
     <!-- Theme Styles -->
-    <link href="{{ asset('assets admin/css/main.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets admin/css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets auth/css/main.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets auth/css/custom.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -95,13 +95,7 @@
                              {{ $message }}
                         </div>
                     @enderror
-                </div>
-                <div class="mt-4">
-                    <label for="remember_me" class="inline-flex items-center">
-                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                        <span class="ml-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>  
+                </div> 
 
                 <div class="form-group mt-5 text-center">
                 <button type="submit" class="btn btn-primary w-50">Register <i class="ms-1 bi bi-send"></i></button>
@@ -111,12 +105,12 @@
     </div>
     
     <!-- Javascripts -->
-    <script src="{{ asset('assets admin/plugins/jquery/jquery-3.5.1.min.js') }}"></script>
-    <script src="{{ asset('assets admin/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets admin/plugins/perfectscroll/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('assets admin/plugins/pace/pace.min.js') }}"></script>
-    <script src="{{ asset('assets admin/js/main.min.js') }}"></script>
-    <script src="{{ asset('assets admin/js/custom.js') }}"></script>
+    <script src="{{ asset('assets auth/plugins/jquery/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('assets auth/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets auth/plugins/perfectscroll/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('assets auth/plugins/pace/pace.min.js') }}"></script>
+    <script src="{{ asset('assets auth/js/main.min.js') }}"></script>
+    <script src="{{ asset('assets auth/js/custom.js') }}"></script>
 </body>
 
 </html>

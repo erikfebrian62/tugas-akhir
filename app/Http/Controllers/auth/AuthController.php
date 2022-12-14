@@ -27,7 +27,7 @@ class AuthController extends Controller
         ]);
         
         $User = User::create([
-            'role' => 'user',
+            'img' => 'user.png',
             'name' => $request->name,
             'email' => $request->email,
             'jenis_usaha' => $request->jenis_usaha,
@@ -39,7 +39,7 @@ class AuthController extends Controller
 
         auth()->login($User);
 
-        return redirect(route('verification.notice'))->with('success', 'Akun berhasil dibuat, silahkan verifikasi email anda');
+        return redirect(route('verification.notice'))->with('berhasil', 'Akun berhasil dibuat, silahkan verifikasi email anda');
     }
 
     //login
@@ -51,23 +51,24 @@ class AuthController extends Controller
     public function login_proces(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email:dns'],
+            'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
  
         if (Auth::attempt($credentials)) {
-            if(Auth::user()->role === 'user') {
-                if(Auth::user()->email_verified_at === 'NULL'){
-                    return redirect (route('verification.notice'));
-                }
-                $request->session()->regenerate();
-                return redirect()->intended(route('user.dashboard'))->with('success', 'Selamat datang di website kami:)');
+
+            if(Auth::check() && Auth::user()->email_verified_at === 'NULL'){
+
+                return redirect(route('verification.notice'))->with('verify','Verifikasi terlebih dahulu!!!');
+
             }else{
-                return redirect()->intended(route('admin.dashboard'))->with('success', 'Halo admin!');
+
+                $request->session()->regenerate();
+     
+                return redirect()->intended(route('dashboard'))->with('success', 'Selamat datang di web kami');
             }
         }
- 
-        return back()->with('error', 'email atau password salah');
+        return back()->with('error', 'Email atau Password salah');
     }
 
 }
