@@ -96,6 +96,12 @@
                         </div>
                     @enderror
                 </div>
+                <div class="mt-4">
+                    <label for="remember_me" class="inline-flex items-center">
+                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                        <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                    </label>
+                </div>  
 
                 <div class="form-group mt-5 text-center">
                 <button type="submit" class="btn btn-primary w-50">Register <i class="ms-1 bi bi-send"></i></button>

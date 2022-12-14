@@ -66,7 +66,7 @@
                         <label for="signInPassword" class="form-label">Password</label>
                     </div>
                     <div class="form-group mt-5 text-center">
-                        <button type="submit" class="btn btn-primary w-50">Log in</button>
+                        <button type="submit" class="float-start btn btn-primary w-30">Log in</button>  <a class="float-end text-xs " href="{{ route('forgot.index') }}">Lupa password?</a>
                     </div>
                 </form>
             </div>
@@ -123,6 +123,27 @@
            Toast.fire({
            icon: 'success',
            title: '{{ Session::get('notice') }}'
+           })
+        @endif
+      </script>
+
+    {{-- span --}}
+    <script>
+        @if (Session::has('status'))
+        const Toast = Swal.mixin({
+           toast: true,
+           position: 'top-end',
+           showConfirmButton: false,
+           timer: 3000,
+           timerProgressBar: true,
+           didOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+           }
+           })
+           Toast.fire({
+           icon: 'info',
+           title: '{{ Session::get('status') }}'
            })
         @endif
       </script>

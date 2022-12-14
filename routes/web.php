@@ -1,16 +1,16 @@
 <?php
 
-use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\AuthController;
-use App\Http\Controllers\auth\VerificationController;
 use App\Http\Controllers\users\MainController;
 use App\Http\Controllers\users\ProdukController;
+use App\Http\Controllers\auth\PasswordController;
 use App\Http\Controllers\users\LaporanController;
 use App\Http\Controllers\admin\InfouserController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\users\CalculateController;
+use App\Http\Controllers\auth\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,37 +23,51 @@ use App\Http\Controllers\users\CalculateController;
 |
 */
 
-//auth
-Route::get('/', [AuthController::class, 'register_index'])->name('register.index');
-Route::post('/', [AuthController::class, 'register_proces'])->name('register.proces');
+Route::controller(AuthController::class)->group(function () {
+    //register
+    Route::get('/', 'register_index')->name('register.index');
+    Route::post('/', 'register_proces')->name('register.proces');
 
-Route::get('/login', [AuthController::class, 'login_index'])->name('login.index');
-Route::post('/login', [AuthController::class, 'login_proces'])->name('login.proces');
+    //login
+    Route::get('login', 'login_index')->name('login.index');
+    Route::post('login', 'login_proces')->name('login.proces');
+});
 
-Route::get('/logout', function () {
+//logout
+Route::get('logout', function () {
     Auth::logout();
 
     return redirect(route('login.index'));
 })->name('logout');
 
 //verifycation email
-Route::get('/email/verify/need-verification', [VerificationController::class, 'notice'])->middleware('auth')->name('verification.notice');
-Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware('auth','signed')->name('verification.verify');
-Route::get('/email/verify/resend-verification', [VerificationController::class, 'send'])->middleware('auth','throttle:6,1')->name('verification.send');
+Route::controller(VerificationController::class)->group(function () {
+    Route::get('email/verify/need-verification', 'notice')->middleware('auth')->name('verification.notice');
+    Route::get('email/verify/{id}/{hash}', 'verify')->middleware('auth', 'signed')->name('verification.verify');
+    Route::get('email/verify/resend-verification', 'send')->middleware('auth', 'throttle:6,1')->name('verification.send');
+});
+
+//forgot password
+Route::controller(PasswordController::class)->group(function () {
+    Route::get('forgot-password', 'forgot_index')->name('forgot.index');
+    Route::post('forgot-password', 'forgot_proces')->name('forgot.proces');
+    Route::get('reset-password/{token}', 'reset_index')->name('password.reset');
+    Route::post('reset-password', 'reset_proces')->name('reset.proces');
+});
 
 
 Route::middleware(['auth', 'auth.session', 'verified'])->group(function () {
     // admin
     Route::prefix('admin')->name('admin.')->middleware('role:admin')->group( function() {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/info-users', [InfouserController::class, 'index'])->name('info-user');
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('info-users', [InfouserController::class, 'index'])->name('info-user');
     });
 
     //users
     Route::prefix('user')->name('user.')->middleware('role:user')->group( function() {
-        Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
-        Route::get('/kelola-produk', [ProdukController::class, 'index'])->name('kelola-produk');
-        Route::get('/calculate-profit', [CalculateController::class, 'index'])->name('calculate');
-        Route::get('/laporan-keuangan', [LaporanController::class, 'index'])->name('laporan');
+        Route::get('dashboard', [MainController::class, 'index'])->name('dashboard');
+        Route::get('kelola-produk', [ProdukController::class, 'index'])->name('kelola-produk');
+        Route::get('calculate-profit', [CalculateController::class, 'index'])->name('calculate');
+        Route::get('laporan-keuangan', [LaporanController::class, 'index'])->name('laporan');
     });
 });

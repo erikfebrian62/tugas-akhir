@@ -13,28 +13,28 @@
     <ul class="metismenu" id="menu">
         <li class="menu-label">Menu</li>
         <li>
-            <a href="javascript:;">
+            <a href="{{ route('user.dashboard') }}">
                 <div class="parent-icon"><i class='bx bx-home-circle'></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
         <li>
-            <a href="javascript:;">
+            <a href="{{ route('user.kelola-produk') }}">
                 <div class="parent-icon"><i class='bx bx-cart'></i>
                 </div>
                 <div class="menu-title">Kelola Usaha</div>
             </a>
         </li>
         <li>
-            <a href="javascript:;">
+            <a href="{{ route('user.calculate') }}">
                 <div class="parent-icon"><i class="bx bx-calculator"></i>
                 </div>
                 <div class="menu-title">Calculate Profit</div>
             </a>
         </li>
         <li>
-            <a href="javascript:;">
+            <a href="{{ route('user.laporan') }}">
                 <div class="parent-icon"><i class="bx bx-file"></i>
                 </div>
                 <div class="menu-title">Laporan</div>
