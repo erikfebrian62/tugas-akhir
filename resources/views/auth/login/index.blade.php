@@ -14,6 +14,8 @@
 
     {{-- Boostrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
 
     <!-- Styles -->
     <link rel="preconnect" href="https://fonts.gstatic.com/">
@@ -48,8 +50,15 @@
                 <form action="{{ route('login.proces') }}" method="POST">
                     @csrf
                     <div class="form-floating mb-3">
-                        <input type="email" class="shadow-sm form-control" name="email" id="signInEmail" aria-describedby="signInEmail" required placeholder="Masukan Email" value="{{ old('email') }}">
+                        <input type="email" class="shadow-sm form-control @error('email')
+                           is-invalid 
+                        @enderror" name="email" id="signInEmail" aria-describedby="signInEmail" required placeholder="Masukan Email" value="{{ old('email') }}">
                         <label for="signInEmail" class="form-label">Email address </label>
+                        @error('email')
+                            <div class="feedback-invalid">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="form-floating">
@@ -75,6 +84,27 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    {{-- span error --}}
+    <script>
+        @if (Session::has('error'))
+        const Toast = Swal.mixin({
+           toast: true,
+           position: 'top-end',
+           showConfirmButton: false,
+           timer: 3000,
+           timerProgressBar: true,
+           didOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+           }
+           })
+           Toast.fire({
+           icon: 'error',
+           title: '{{ Session::get('error') }}'
+           })
+        @endif
+      </script>
 
     {{-- span --}}
     <script>

@@ -72,6 +72,11 @@
     <script src="{{ asset('assets admin/js/main.min.js') }}"></script>
     <script src="{{ asset('assets admin/js/custom.js') }}"></script>
     <script src="{{ asset('assets admin/js/pages/dashboard.js') }}"></script>
+    {{-- Sweet-alert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    @stack('js')
 </body>
 
 </html>

@@ -357,13 +357,6 @@
                         <div class="text-center mt-3">
                             <span class="bg-secondary p-1 px-4 rounded text-white">Pengusaha</span>
                             <h5 class="mt-2 mb-0">Alexender Schidmt</h5>
-                             <ul class="social-list">
-                                <li><i class="fa fa-facebook"></i></li>
-                                <li><i class="fa fa-dribbble"></i></li>
-                                <li><i class="fa fa-instagram"></i></li>
-                                <li><i class="fa fa-linkedin"></i></li>
-                                <li><i class="fa fa-google"></i></li>
-                            </ul> 
                         </div>
                     </div>
                 </div>
@@ -379,8 +372,12 @@
                                     <img src="/images/user.png" class="mt-3" width="150px">
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="ketua" value="" id="floatingInput" placeholder="Ketua">
-                                    <label for="floatingInput">Ketua</label>
+                                    <input type="text" class="form-control" name="name" value="" id="floatingInput" placeholder="Name">
+                                    <label for="floatingInput">Name</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="jenis_usaha" value="" id="floatingInput" placeholder="Jenis_usaha">
+                                    <label for="floatingInput">Jenis_usaha</label>
                                 </div>
                                 <button type="submit" class="btn  btn-primary btn-sm float-end"><i class="fa fa-save"></i>Save Changes</button>
                             </form>

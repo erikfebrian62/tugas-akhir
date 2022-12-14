@@ -27,10 +27,8 @@ use App\Http\Controllers\users\CalculateController;
 Route::get('/', [AuthController::class, 'register_index'])->name('register.index');
 Route::post('/', [AuthController::class, 'register_proces'])->name('register.proces');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/login', [AuthController::class, 'login_index'])->name('login.index');
-    Route::post('/login', [AuthController::class, 'login_proces'])->name('login.proces');
-});
+Route::get('/login', [AuthController::class, 'login_index'])->name('login.index');
+Route::post('/login', [AuthController::class, 'login_proces'])->name('login.proces');
 
 Route::get('/logout', function () {
     Auth::logout();

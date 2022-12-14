@@ -20,15 +20,11 @@
             </a>
         </li>
         <li>
-            <a href="javascript:;" class="has-arrow">
+            <a href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-cart'></i>
                 </div>
-                <div class="menu-title">Usaha</div>
+                <div class="menu-title">Kelola Usaha</div>
             </a>
-            <ul>
-                <li> <a href="ecommerce-products.html"><i class="bx bx-right-arrow-alt"></i>Kelola Produk</a>
-                </li>
-            </ul>
         </li>
         <li>
             <a href="javascript:;">

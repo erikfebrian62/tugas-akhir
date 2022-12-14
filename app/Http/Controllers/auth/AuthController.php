@@ -50,14 +50,24 @@ class AuthController extends Controller
 
     public function login_proces(Request $request)
     {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-           if(Auth::user()->role === 'user') {
-            return redirect(route('user.dashboard'));
-           } else {
-            return redirect(route('admin.dashboard'));
-           }
+        $credentials = $request->validate([
+            'email' => ['required', 'email:dns'],
+            'password' => ['required'],
+        ]);
+ 
+        if (Auth::attempt($credentials)) {
+            if(Auth::user()->role === 'user') {
+                if(Auth::user()->email_verified_at === 'NULL'){
+                    return redirect (route('verification.notice'));
+                }
+                $request->session()->regenerate();
+                return redirect()->intended(route('user.dashboard'))->with('success', 'Selamat datang di website kami:)');
+            }else{
+                return redirect()->intended(route('admin.dashboard'))->with('success', 'Halo admin!');
+            }
         }
-        return back()->with('Error', 'email atau password salah');
+ 
+        return back()->with('error', 'email atau password salah');
     }
 
 }

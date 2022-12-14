@@ -74,8 +74,9 @@
 	<script src="{{ asset('assets users/js/index.js') }}"></script>
 	<!--app JS-->
 	<script src="{{ asset('assets users/js/app.js') }}"></script>
+	{{-- Sweet-alert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </body>
-
-
-<!-- Mirrored from codervent.com/rocker/demo/vertical/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Dec 2022 07:06:43 GMT -->
 </html>
