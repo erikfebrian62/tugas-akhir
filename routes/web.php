@@ -48,7 +48,7 @@ Route::get('logout', function () {
 
 //verifycation email
 Route::controller(VerificationController::class)->group(function () {
-    Route::get('email/verify/need-verification', 'notice')->name('verification.notice');
+    Route::get('email/verify/need-verification', 'notice')->middleware('auth')->name('verification.notice');
     Route::get('email/verify/{id}/{hash}', 'verify')->middleware(['signed', 'throttle:6,1' ])->name('verification.verify');
     Route::get('email/verify/resend-verification', 'send')->middleware(['throttle:6,1'])->name('verification.send');
 });
