@@ -29,6 +29,14 @@ Route::controller(AuthController::class)->middleware('guest')->group(function ()
     //login
     Route::get('login', 'login_index')->name('login.index');
     Route::post('login', 'login_proces')->name('login.proces');
+
+    //forgot password
+    Route::controller(PasswordController::class)->group(function () {
+        Route::get('forgot-password', 'forgot_index')->name('forgot.index');
+        Route::post('forgot-password', 'forgot_proces')->name('forgot.proces');
+        Route::get('reset-password/{token}', 'reset_index')->name('password.reset');
+        Route::post('reset-password', 'reset_proces')->name('reset.proces');
+    });
 });
 
 //logout
@@ -40,20 +48,14 @@ Route::get('logout', function () {
 
 //verifycation email
 Route::controller(VerificationController::class)->group(function () {
-    Route::get('email/verify/need-verification', 'notice')->middleware('auth')->name('verification.notice');
-    Route::get('email/verify/{id}/{hash}', 'verify')->middleware('auth', 'signed')->name('verification.verify');
-    Route::get('email/verify/resend-verification', 'send')->middleware('auth', 'throttle:6,1')->name('verification.send');
+    Route::get('email/verify/need-verification', 'notice')->name('verification.notice');
+    Route::get('email/verify/{id}/{hash}', 'verify')->middleware(['signed', 'throttle:6,1' ])->name('verification.verify');
+    Route::get('email/verify/resend-verification', 'send')->middleware(['throttle:6,1'])->name('verification.send');
 });
 
-//forgot password
-Route::controller(PasswordController::class)->group(function () {
-    Route::get('forgot-password', 'forgot_index')->name('forgot.index');
-    Route::post('forgot-password', 'forgot_proces')->name('forgot.proces');
-    Route::get('reset-password/{token}', 'reset_index')->name('password.reset');
-    Route::post('reset-password', 'reset_proces')->name('reset.proces');
-});
 
-Route::group(['middleware' => ['auth', 'auth.session', 'verified']], function(){
+
+Route::group(['middleware' => ['auth','auth.session', 'verified']], function(){
     Route::get('dashboard', [MainController::class, 'index'])->name('dashboard');
     Route::get('kelola-produk', [ProdukController::class, 'index'])->name('kelola-produk');
     Route::get('calculate-profit', [CalculateController::class, 'index'])->name('calculate');

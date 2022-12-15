@@ -4,21 +4,39 @@ namespace App\Http\Controllers\auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class VerificationController extends Controller
 {
-    public function notice(){
-        return view('auth.verify.index');
+    //tampilan
+    public function notice(Request $request){
+        return $request->user()->hasVerifiedEmail()
+                    ? redirect()->intended(RouteServiceProvider::HOME)
+                    : view('auth.verify.index');
     }
 
-
+    //verifikasi
     public function verify(EmailVerificationRequest $request){
-        $request->fulfill();
-        return redirect(route('dashboard'))->with('notice', 'Verifikasi berhasil:)');
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect()->intended(RouteServiceProvider::HOME.'?verified=1')->with('notif', 'Verifikasi email berhasil');
+        }
+
+        if ($request->user()->markEmailAsVerified()) {
+            event(new Verified($request->user()));
+        }
+
+        return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
     }       
 
+    //kirim ulang link
     public function send(Request $request){
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
         $request->user()->sendEmailVerificationNotification();
 
         return back()->with('notif', 'Verification berhasil dikirim ulang.');
