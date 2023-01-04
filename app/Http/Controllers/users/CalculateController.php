@@ -8,6 +8,6 @@ use App\Http\Controllers\Controller;
 class CalculateController extends Controller
 {
     public function index(){
-        return view('users.calculate.index');
+        return view('users.calculate.index', ['title' => 'Calculate-profit']);
     }
 }

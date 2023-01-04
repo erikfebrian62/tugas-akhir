@@ -57,8 +57,14 @@ Route::controller(VerificationController::class)->group(function () {
 
 Route::group(['middleware' => ['auth','auth.session', 'verified']], function(){
     Route::get('dashboard', [MainController::class, 'index'])->name('dashboard');
-    Route::get('kelola-produk', [ProdukController::class, 'index'])->name('kelola-produk');
     Route::get('calculate-profit', [CalculateController::class, 'index'])->name('calculate');
     Route::get('laporan-keuangan', [LaporanController::class, 'index'])->name('laporan');
+    Route::prefix('kelola-produk')->name('produk.')->group(function (){
+        Route::get('/', [ProdukController::class, 'index'])->name('index');
+        Route::post('/', [ProdukController::class, 'store'])->name('store');
+        Route::get('{id}/edit', [ProdukController::class, 'edit'])->name('edit');
+        Route::put('{id}', [ProdukController::class, 'update'])->name('update');
+        Route::get('{id}', [ProdukController::class, 'destroy'])->name('hapus');
+    });
 });
 

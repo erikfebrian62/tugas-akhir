@@ -30,7 +30,10 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/dark-theme.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('assets/css/semi-dark.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('assets/css/header-colors.css') }}"/>
-	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+
+	{{-- css datatables --}}
+	<link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+	<title>{{ $title }}</title>
 </head>
 
 <body>
@@ -58,6 +61,8 @@
 		@include('users.partials.footer')
 	</div>
 	<!--end wrapper-->
+	{{-- js datatables --}}
+	<script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 	
 	<!-- Bootstrap JS -->
 	<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
